@@ -1,0 +1,16 @@
+# ~1.1B-parameter dense decoder-only Transformer — the roadmap's
+# "scale-up" target. Needs multi-GPU (DP + ZeRO at minimum; see
+# parallel/zero_notes.md) to train at a useful batch size/context.
+vocab_size: 32768
+dim: 2048
+n_layers: 22
+n_heads: 16
+n_kv_heads: 4
+mlp_ratio: 3.5
+mult_of: 256
+max_seq_len: 4096
+rope_theta: 10000.0
+norm_eps: 1.0e-5
+dropout: 0.0
+tie_embeddings: true
+bias: false

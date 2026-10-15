@@ -1,0 +1,30 @@
+model:
+  vocab_size: 32768
+  dim: 512
+  n_layers: 8
+  n_heads: 8
+  n_kv_heads: 2
+  mlp_ratio: 3.5
+  mult_of: 32
+  max_seq_len: 1024
+  rope_theta: 10000.0
+  tie_embeddings: true
+  bias: false
+
+init_from_pretrain: checkpoints/pretrain/final.pt
+
+data:
+  sft_jsonl: data_raw/sft_examples.jsonl
+  tokenizer_path: tokenizer.json
+
+train:
+  batch_size: 16
+  epochs: 3
+  max_lr: 1.0e-5
+  weight_decay: 0.0
+  grad_clip: 1.0
+  warmup_steps: 100
+  log_every: 10
+  ckpt_dir: checkpoints/sft
+
+seed: 1337

@@ -1,0 +1,29 @@
+model:
+  vocab_size: 32768
+  dim: 512
+  n_layers: 8
+  n_heads: 8
+  n_kv_heads: 2
+  mlp_ratio: 3.5
+  mult_of: 32
+  max_seq_len: 1024
+  rope_theta: 10000.0
+  tie_embeddings: true
+  bias: false
+
+init_from_sft: checkpoints/sft/final.pt
+
+data:
+  dpo_jsonl: data_raw/dpo_pairs.jsonl
+  tokenizer_path: tokenizer.json
+
+train:
+  batch_size: 8
+  epochs: 1
+  max_lr: 5.0e-6
+  beta: 0.1              # DPO temperature: higher = stays closer to the reference model
+  grad_clip: 1.0
+  log_every: 10
+  ckpt_dir: checkpoints/dpo
+
+seed: 1337

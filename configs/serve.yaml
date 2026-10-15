@@ -1,0 +1,17 @@
+checkpoint: checkpoints/dpo/final.pt
+tokenizer: tokenizer.json
+quantized_checkpoint: checkpoints/dpo/final.int8.pt   # produced by serve/quantize.py
+
+generation:
+  max_new_tokens: 256
+  temperature: 0.7
+  top_k: 40
+
+rag:
+  enabled: false
+  corpus_jsonl: data_raw/rag_corpus.jsonl
+  top_k: 3
+
+api:
+  host: 0.0.0.0
+  port: 8000
